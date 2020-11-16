@@ -119,7 +119,7 @@ export default function Login() {
             </div>
             <div className="submitBtn">
               <div className="filler">
-                <button disabled={disabled}>Log In</button>
+                <button className="button" disabled={disabled}>Log In</button>
               </div>
             </div>
           </form>

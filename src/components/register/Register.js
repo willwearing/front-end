@@ -64,7 +64,7 @@ export default function Register() {
         // debugger;
         console.log("registration resopnse", response);
         // setNewUser(userInfo);
-        history.push("/");
+        history.push("/login");
       })
       .catch((err) => {
         console.log(err);
