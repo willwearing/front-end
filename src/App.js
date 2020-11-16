@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Register from "./components/register/Register";
 import styled from "styled-components";
 import Dashboard from "./components/Dashboard/Dashboard";
+import ProjectForm from "./components/CreateNewProject/ProjectForm";
 
 export default function App() {
   return (
@@ -29,13 +30,10 @@ export default function App() {
               <li>
                 <StyledLink to="/dashboard">Dashboard</StyledLink>
               </li>
+              <li>
+                <StyledLink to="/newproject">Create New Project</StyledLink>
+              </li>
             </ul>
-            {/* <div id="sidebar" className="scrolly">
-            <StyledLink to="/">Home</StyledLink>
-            <StyledLink to="/login">Log In</StyledLink>
-            <StyledLink to="/register">Sign Up</StyledLink>
-            <StyledLink to="/dashboad">Dashboard</StyledLink>
-          </div> */}
           </nav>
         </div>
       </section>
@@ -49,6 +47,9 @@ export default function App() {
         <Route path="/register">
           <Register />
         </Route>
+        <Route path="/newproject">
+          <ProjectForm />
+        </Route>
         <Route path="/">
           <Home />
         </Route>
@@ -59,14 +60,14 @@ export default function App() {
 
 const StyledLink = styled(Link)`
   /* text-decoration: none; */
-  font-size: 2rem;
-  padding: 0.5rem;
+  /* /* font-size: 2rem; */
+  /* padding: 0.5rem; */
 
-  &:focus,
+  /* &:focus,
   &:hover,
   &:visited,
   &:link,
   &:active {
-    /* text-decoration: none; */
-  }
+    text-decoration: none;
+  } */
 `;

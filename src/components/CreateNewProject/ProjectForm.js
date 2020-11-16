@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
-import schema from "./registerSchema";
+import schema from "./ProjectFormSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const initialFormValues = {
-  email: "",
-  password: "",
-  username: "",
-  role: "",
+  project_name: "",
+  project_description: "",
+  project_funding: "",
+  funded: "",
 };
 const initialFormErrors = {
-  email: "",
-  password: "",
-  username: "",
-  role: "",
+  project_name: "",
+  project_description: "",
+  project_funding: "",
+  funded: "",
 };
 const initialDisabled = true;
 
-export default function Register() {
+export default function ProjectForm() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
-  // const [newUser, setNewUser] = useState([]);
 
   const history = useHistory();
 
@@ -54,17 +53,13 @@ export default function Register() {
     inputChange(name, value);
   };
 
-  const checkUser = (userInfo) => {
+  const newProject = (projectInfo) => {
     axios
-      .post(
-        "https://vr-backend-lambda.herokuapp.com/api/auth/register",
-        userInfo
-      )
+      .post("https://vr-backend-lambda.herokuapp.com/api/projects", projectInfo)
       .then((response) => {
         // debugger;
-        console.log("registration resopnse", response);
-        // setNewUser(userInfo);
-        history.push("/");
+        console.log("project response", response);
+        history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -72,13 +67,14 @@ export default function Register() {
   };
 
   const formSubmit = () => {
-    const userInfo = {
-      email: formValues.email.trim(),
-      password: formValues.password.trim(),
-      name: formValues.username.trim(),
-      role: formValues.role,
+    const projectInfo = {
+      project_name: formValues.project_name.trim(),
+      project_description: formValues.project_description.trim(),
+      project_funding: formValues.project_funding,
+      funded: formValues.funded === "0" ? true : false,
     };
-    checkUser(userInfo);
+    console.log(projectInfo);
+    newProject(projectInfo);
   };
 
   const submit = (evt) => {
@@ -92,73 +88,64 @@ export default function Register() {
     });
   }, [formValues]);
 
-  // useEffect(() => {
-  //   console.log(newUser);
-  // }, [newUser]);
-
   return (
-    <RegistrationContainer>
+    <ProjectFormContainer>
       <div className="formWrapper">
         <form onSubmit={submit}>
           <div className="inputWrapper">
-            <div className="fields">Username</div>
+            <div className="fields">Project Name</div>
             <input
               type="text"
-              name="username"
-              value={formValues.username}
+              name="project_name"
+              value={formValues.project_name}
               onChange={change}
             />
-            {formErrors.username ? (
-              <div className="error">{formErrors.username}</div>
+            {formErrors.project_name ? (
+              <div className="error">{formErrors.project_name}</div>
             ) : (
               <div className="emptyDiv"></div>
             )}
           </div>
 
           <div className="inputWrapper">
-            <div className="fields">Email</div>
+            <div className="fields">Project Decsription</div>
+            <textarea
+              type="text"
+              name="project_description"
+              value={formValues.project_description}
+              onChange={change}
+            />
+            {formErrors.project_description ? (
+              <div className="error">{formErrors.project_description}</div>
+            ) : (
+              <div className="emptyDiv"></div>
+            )}
+          </div>
+
+          <div className="inputWrapper">
+            <div className="fields">Project Funding</div>
             <input
-              type="email"
-              name="email"
-              value={formValues.email}
+              type="text"
+              name="project_funding"
+              value={formValues.project_funding}
               onChange={change}
             />
-            {formErrors.email ? (
-              <div className="error">{formErrors.email}</div>
+            {formErrors.project_funding ? (
+              <div className="error">{formErrors.project_funding}</div>
             ) : (
               <div className="emptyDiv"></div>
             )}
           </div>
 
           <div className="inputWrapper">
-            <div className="fields">Password</div>
-            <input
-              type="password"
-              name="password"
-              value={formValues.password}
-              onChange={change}
-            />
-            {formErrors.password ? (
-              <div className="error">{formErrors.password}</div>
-            ) : (
-              <div className="emptyDiv"></div>
-            )}
-          </div>
-
-          <div className="inputWrapper">
-            <div className="fields">Role</div>
-            <select
-              name="role"
-              value={formValues.role}
-              onChange={change}
-              required
-            >
-              <option value="">Select Role</option>
-              <option value="0">Project Owner</option>
-              <option value="1">Investor</option>
+            <div className="fields">Funded</div>
+            <select name="funded" value={formValues.funded} onChange={change}>
+              <option value="">-</option>
+              <option value="0">Yes</option>
+              <option value="1">No</option>
             </select>
-            {formErrors.role ? (
-              <div className="error">{formErrors.role}</div>
+            {formErrors.funded ? (
+              <div className="error">{formErrors.funded}</div>
             ) : (
               <div className="emptyDiv"></div>
             )}
@@ -166,16 +153,16 @@ export default function Register() {
 
           <div className="submitBtn">
             <div className="filler">
-              <button disabled={disabled}>Register</button>
+              <button disabled={disabled}>Create New Project</button>
             </div>
           </div>
         </form>
       </div>
-    </RegistrationContainer>
+    </ProjectFormContainer>
   );
 }
 
-const RegistrationContainer = styled.div`
+const ProjectFormContainer = styled.div`
   /* border: 1px solid black; */
   display: flex;
   align-items: baseline;
@@ -184,7 +171,8 @@ const RegistrationContainer = styled.div`
   .formWrapper {
     display: flex;
     justify-content: center;
-    padding-left: 37.5rem;
+    padding-left: 40rem;
+    padding-top: 17.5rem;
     form {
       display: flex;
       flex-direction: column;
@@ -196,14 +184,24 @@ const RegistrationContainer = styled.div`
       .fields {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         width: 10rem;
         height: 3.7rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
       input {
         height: 3.1rem;
         width: 17.7rem;
+      }
+      textarea {
+        width: 17.7rem;
+        height: 8rem;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-size: 0.8rem;
+        overflow-wrap: break-word;
       }
       .error {
         display: flex;
@@ -213,18 +211,16 @@ const RegistrationContainer = styled.div`
         font-size: 1.1rem;
         padding-left: 1.5rem;
       }
-
       .emptyDiv {
         width: 17.7rem;
         height: 3.1rem;
       }
       select {
-        width: 18.5rem;
-        height: 3.7rem;
+        width: 17.7rem;
+        height: 3rem;
       }
     }
   }
-
   .submitBtn {
     display: flex;
     margin-left: 10rem;
@@ -234,8 +230,9 @@ const RegistrationContainer = styled.div`
       height: 3.7rem;
     }
     button {
-      width: 10rem;
+      /* width: 10rem; */
       margin-top: 0.7rem;
+      font-size: 0.7rem;
     }
   }
 `;
