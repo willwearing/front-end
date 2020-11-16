@@ -60,8 +60,7 @@ export default function Register() {
       .then((response) => {
         // debugger;
         console.log("registration resopnse", response);
-        // setNewUser(userInfo);
-        history.push("/");
+        history.push("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -173,15 +172,16 @@ export default function Register() {
 }
 
 const RegistrationContainer = styled.div`
-  /* border: 1px solid black; */
-  display: flex;
+    /* border: 1px solid black; */
+    display: flex;
   align-items: baseline;
   justify-content: center;
   margin-top: 10rem;
   .formWrapper {
     display: flex;
     justify-content: center;
-    padding-left: 37.5rem;
+    padding-left: 40rem;
+    padding-top: 18rem;
     form {
       display: flex;
       flex-direction: column;
@@ -196,7 +196,6 @@ const RegistrationContainer = styled.div`
         justify-content: center;
         width: 10rem;
         height: 3.7rem;
-        font-size: 1.5rem;
       }
       input {
         height: 3.1rem;
@@ -216,7 +215,7 @@ const RegistrationContainer = styled.div`
         height: 3.1rem;
       }
       select {
-        width: 18.5rem;
+        width: 17.7rem;
         height: 3.7rem;
       }
     }
@@ -231,8 +230,9 @@ const RegistrationContainer = styled.div`
       height: 3.7rem;
     }
     button {
-      width: 10rem;
+      /* width: 10rem; */
       margin-top: 0.7rem;
+      font-size: 0.7rem;
     }
   }
 `;
