@@ -4,6 +4,7 @@ export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
 
   return axios.create({
+    baseURL: "https://vr-backend-lambda.herokuapp.com",
     headers: {
       Authorization: `${token}`
     }

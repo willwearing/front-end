@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
+import {axiosWithAuth} from "../../utils/axiosWithAuth";
 import schema from "./registerSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -55,11 +55,8 @@ export default function Register() {
   };
 
   const checkUser = (userInfo) => {
-    axios
-      .post(
-        "https://vr-backend-lambda.herokuapp.com/api/auth/register",
-        userInfo
-      )
+    axiosWithAuth()
+    .post("/api/users", userInfo)
       .then((response) => {
         // debugger;
         console.log("registration resopnse", response);

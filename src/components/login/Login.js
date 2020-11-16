@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
+import {axiosWithAuth} from "../../utils/axiosWithAuth";
 import schema from "./loginSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -51,8 +51,8 @@ export default function Login() {
   };
 
   const checkUser = (loginInfo) => {
-    axios
-      .post("https://vr-backend-lambda.herokuapp.com/api/auth/login", loginInfo)
+    axiosWithAuth()
+    .post("/api/users", loginInfo)
       .then((res) => {
         // debugger;
         console.log(res.data);
