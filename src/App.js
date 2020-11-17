@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
 import Login from "./components/login/Login";
 import Home from "./components/Home";
 import Register from "./components/register/Register";
@@ -9,6 +9,7 @@ import ProjectForm from "./components/CreateNewProject/ProjectForm";
 
 export default function App() {
   return (
+    <Router>
     <div className="App">
       <section id="sidebar">
         <div className="inner">
@@ -55,6 +56,7 @@ export default function App() {
         </Route>
       </Switch>
     </div>
+    </Router>
   );
 }
 
