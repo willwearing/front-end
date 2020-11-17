@@ -1,8 +1,9 @@
 import React from "react";
 import ProjectPanel from "./ProjectPanel";
 
+import { connect } from 'react-redux'
 
-export default function Dashboard() {
+const Dashboard = props => {
 
 
 
@@ -17,7 +18,18 @@ export default function Dashboard() {
                 </div>
             </section>
             <div>Your Projects</div>
-            <ProjectPanel />
+            {props.projects.map(proj => {
+                <ProjectPanel project={proj}/>
+            })}
+            
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        projects: state.projects
+    }
+}
+
+export default connect(mapStateToProps, null)(Dashboard)
