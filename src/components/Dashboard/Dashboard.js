@@ -5,9 +5,6 @@ import { connect } from 'react-redux'
 
 const Dashboard = props => {
 
-
-
-
     return (
         <div id="wrapper">
             <section id="intro" className="wrapper style1 fullscreen fade-up">

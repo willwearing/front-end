@@ -1,4 +1,4 @@
-import { ADD_PROJECT } from './../actions'
+import { ADD_PROJECT, FETCH_PROJECTS } from './../actions'
 
 const initialState = {
     projects: [],
@@ -10,8 +10,11 @@ export const reducer = (state=initialState, action) => {
             return {...state,
                 projects: [...state.projects, action.payload]
             }
-        
-            default:
-                return state;
+        case FETCH_PROJECTS:
+            return {...state,
+                projects: action.payload
+            }
+        default:
+            return state;
     }
 }
