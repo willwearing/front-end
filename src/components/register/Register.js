@@ -56,7 +56,7 @@ export default function Register() {
 
   const checkUser = (userInfo) => {
     axiosWithAuth()
-    .post("/api/users", userInfo)
+    .post("/api/auth/register", userInfo)
       .then((response) => {
         // debugger;
         console.log("registration resopnse", response);
