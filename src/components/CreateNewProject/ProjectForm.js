@@ -5,6 +5,8 @@ import schema from "./ProjectFormSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+import { axiosWithAuth } from './../../utils/axiosWithAuth';
+
 const initialFormValues = {
   project_name: "",
   project_description: "",
@@ -54,8 +56,8 @@ export default function ProjectForm() {
   };
 
   const newProject = (projectInfo) => {
-    axios
-      .post("https://vr-backend-lambda.herokuapp.com/api/projects", projectInfo)
+    axiosWithAuth()
+      .post("/api/projects", projectInfo)
       .then((response) => {
         // debugger;
         console.log("project response", response);

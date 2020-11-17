@@ -1,13 +1,19 @@
 import "./App.css";
-import { Route, Link, Switch, BrowserRouter as Router } from "react-router-dom";
+import { Route, Link, Switch, BrowserRouter as Router, useHistory } from "react-router-dom";
 import Login from "./components/login/Login";
 import Home from "./components/Home";
 import Register from "./components/register/Register";
 import styled from "styled-components";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ProjectForm from "./components/CreateNewProject/ProjectForm";
+import PrivateRoute from './utils/PrivateRoute'
 
 export default function App() {
+
+  const submitLogout = () => {
+    localStorage.removeItem('token');
+  }
+
   return (
     <Router>
     <div className="App">
@@ -26,6 +32,9 @@ export default function App() {
                 </StyledLink>
               </li>
               <li>
+              <StyledLink to="login" onClick={() =>{submitLogout()}}>Logout</StyledLink>
+              </li>
+              <li>
                 <StyledLink to="/register">Sign Up</StyledLink>
               </li>
               <li>
@@ -39,21 +48,11 @@ export default function App() {
         </div>
       </section>
       <Switch>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/newproject">
-          <ProjectForm />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <PrivateRoute path="/newproject" component={ProjectForm} />
+        <PrivateRoute path="/dashboard" component={Dashboard}/>
       </Switch>
     </div>
     </Router>

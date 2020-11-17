@@ -52,9 +52,10 @@ export default function Login() {
 
   const checkUser = (loginInfo) => {
     axiosWithAuth()
-    .post("/api/users", loginInfo)
+    .post("/api/auth/login", loginInfo)
       .then((res) => {
-        // debugger;
+        //debugger;
+        localStorage.setItem('token', res.data.token)
         console.log(res.data);
         setFormValues(initialFormValues);
         history.push("/dashboard");
