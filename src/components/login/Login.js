@@ -56,9 +56,8 @@ export default function Login() {
       .then((res) => {
         // debugger;
         console.log(res.data);
-        //   setUser(res.data);
         setFormValues(initialFormValues);
-        history.push("/");
+        history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -119,7 +118,7 @@ export default function Login() {
             </div>
             <div className="submitBtn">
               <div className="filler">
-                <button className="button" disabled={disabled}>Log In</button>
+                <button disabled={disabled}>Log In</button>
               </div>
             </div>
           </form>
@@ -137,7 +136,8 @@ const LoginContainer = styled.div`
   .formWrapper {
     display: flex;
     justify-content: center;
-    padding-left: 37.5rem;
+    padding-left: 40rem;
+    padding-top: 18rem;
     form {
       display: flex;
       flex-direction: column;
@@ -177,7 +177,6 @@ const LoginContainer = styled.div`
       }
     }
   }
-
   .submitBtn {
     display: flex;
     margin-left: 10rem;
@@ -187,7 +186,7 @@ const LoginContainer = styled.div`
       height: 3.7rem;
     }
     button {
-      width: 10rem;
+      /* width: 10rem; */
       margin-top: 0.7rem;
     }
   }
