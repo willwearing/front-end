@@ -3245,6 +3245,7 @@ input, select, textarea {
 
 		.wrapper.style1 {
 			background-color: #5e42a6;
+			height: 20vh;
 		}
 
 		.wrapper.style1-alt {
@@ -3869,7 +3870,16 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			#sidebar {
-				display: none;
+				display: flex;
+				font-size: 1rem;;
+			}
+
+		}
+		@media screen and (max-width: 480px) {
+
+			#sidebar {
+				display: flex;
+				font-size: 0.8rem;;
 			}
 
 		}
