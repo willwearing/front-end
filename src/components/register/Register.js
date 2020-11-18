@@ -173,7 +173,7 @@ export default function Register() {
 
 const RegistrationContainer = styled.div`
     /* border: 1px solid black; */
-    display: flex;
+  display: flex;
   align-items: baseline;
   justify-content: center;
   margin-top: 10rem;
@@ -181,25 +181,44 @@ const RegistrationContainer = styled.div`
     display: flex;
     justify-content: center;
     padding-left: 40rem;
-    padding-top: 18rem;
+    padding-top: 40rem;
+    @media (max-width: 1280px) {
+      padding-left: 35rem;
+      padding-top: 15rem;
+    }
+    @media (max-width: 900px) {
+      padding-left: 0rem;
+      padding-top: 0rem;
+    }
     form {
       display: flex;
       flex-direction: column;
       width: 75rem;
+      @media (max-width: 900px) {
+        width: 25rem;
+      }
     }
     .inputWrapper {
       display: flex;
       margin: 1rem 0 1rem 0;
+      @media (max-width: 900px) {
+        flex-direction: column;
+      }
       .fields {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 10rem;
         height: 3.7rem;
+        font-size: 1.5rem;
+        @media (max-width: 900px) {
+          justify-content: flex-start;
+        }
       }
       input {
-        height: 3.1rem;
-        width: 17.7rem;
+        height: 3.7rem;
+        width: 25rem;
+        font-size: 1.4rem;
       }
       .error {
         display: flex;
@@ -208,15 +227,23 @@ const RegistrationContainer = styled.div`
         color: red;
         font-size: 1.1rem;
         padding-left: 1.5rem;
+        @media (max-width: 900px) {
+          width: 25rem;
+        }
       }
 
       .emptyDiv {
         width: 17.7rem;
         height: 3.1rem;
+        @media (max-width: 900px) {
+          width: 0rem;
+          height: 0rem;
+        }
       }
       select {
-        width: 17.7rem;
+        width: 25rem;
         height: 3.7rem;
+        font-size: 1.4rem;
       }
     }
   }
@@ -225,14 +252,19 @@ const RegistrationContainer = styled.div`
     display: flex;
     margin-left: 10rem;
     height: 3.1rem;
+    @media (max-width: 900px) {
+      margin-left: 0rem;
+    }
     .filler {
-      width: 17.7rem;
+      width: 25rem;
       height: 3.7rem;
     }
     button {
-      /* width: 10rem; */
-      margin-top: 0.7rem;
-      font-size: 0.7rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      @media (max-width: 900px) {
+        margin-top: 2.5rem;
+      }
     }
   }
 `;

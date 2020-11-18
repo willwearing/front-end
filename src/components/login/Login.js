@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import {axiosWithAuth} from "../../utils/axiosWithAuth";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import schema from "./loginSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -52,10 +52,10 @@ export default function Login() {
 
   const checkUser = (loginInfo) => {
     axiosWithAuth()
-    .post("/api/auth/login", loginInfo)
+      .post("/api/auth/login", loginInfo)
       .then((res) => {
         //debugger;
-        localStorage.setItem('token', res.data.token)
+        localStorage.setItem("token", res.data.token);
         console.log(res.data);
         setFormValues(initialFormValues);
         history.push("/dashboard");
@@ -137,16 +137,30 @@ const LoginContainer = styled.div`
   .formWrapper {
     display: flex;
     justify-content: center;
-    padding-left: 40rem;
-    padding-top: 18rem;
+    margin-left: 40rem;
+    margin-top: 40rem;
+    @media (max-width: 1280px) {
+      margin-left: 35rem;
+      margin-top: 20rem;
+    }
+    @media (max-width: 900px) {
+      margin-left: 0rem;
+      margin-top: 0rem;
+    }
     form {
       display: flex;
       flex-direction: column;
       width: 75rem;
+      @media (max-width: 900px) {
+        width: 25rem;
+      }
     }
     .inputWrapper {
       display: flex;
       margin: 1rem 0 1rem 0;
+      @media (max-width: 900px) {
+        flex-direction: column;
+      }
       .fields {
         display: flex;
         align-items: center;
@@ -154,10 +168,14 @@ const LoginContainer = styled.div`
         width: 10rem;
         height: 3.7rem;
         font-size: 1.5rem;
+        @media (max-width: 900px) {
+          justify-content: flex-start;
+        }
       }
       input {
-        height: 3.1rem;
-        width: 17.7rem;
+        height: 3.7rem;
+        width: 25rem;
+        font-size: 1.4rem;
       }
       .error {
         display: flex;
@@ -167,14 +185,13 @@ const LoginContainer = styled.div`
         font-size: 1.1rem;
         padding-left: 1.5rem;
       }
-
       .emptyDiv {
         width: 17.7rem;
         height: 3.1rem;
-      }
-      select {
-        width: 18.5rem;
-        height: 3.7rem;
+        @media (max-width: 900px) {
+          width: 0rem;
+          height: 0rem;
+        }
       }
     }
   }
@@ -182,13 +199,19 @@ const LoginContainer = styled.div`
     display: flex;
     margin-left: 10rem;
     height: 3.1rem;
+    @media (max-width: 900px) {
+      margin-left: 0rem;
+    }
     .filler {
-      width: 17.7rem;
+      width: 25rem;
       height: 3.7rem;
     }
     button {
-      /* width: 10rem; */
-      margin-top: 0.7rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      @media (max-width: 900px) {
+        margin-top: 2.5rem;
+      }
     }
   }
 `;
