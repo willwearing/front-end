@@ -1,19 +1,49 @@
 import axios from 'axios';
 import { axiosWithAuth } from './../utils/axiosWithAuth';
 
+
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
+export const DELETE_PROJECT = 'DELETE_PROJECT';
+export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 export const SET_USERDETAILS = 'SET_USERDETAILS';
 
 
 
 export const addProject = project => {
     return(dispatch) => {
-        axiosWithAuth().post(`/api/projects`, project)
+        console.log('look here', project)
+        axiosWithAuth()
+            .post(`/api/projects`, project) 
             .then( res => {
-                dispatch({type: ADD_PROJECT, payload: project});
+                dispatch({type: ADD_PROJECT, payload: res.data});
+
             })
-            .catch( err => {
+            .catch( err => {              
+                console.log(err);
+            })
+    }
+}
+
+export const deleteProject = id => {
+    return (dispatch) => {
+        axiosWithAuth().delete(`/api/projects/${id}`)
+            .then(res => {
+                dispatch({type: DELETE_PROJECT, payload: res.data})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
+
+export const updateProject = (id, project) => {
+    return (dispatch) => {
+        axiosWithAuth().put(`/api/projects/${id}`, project)
+            .then(res => {
+                dispatch({type: UPDATE_PROJECT, payload: res.data})
+            })
+            .catch(err => {
                 console.log(err);
             })
     }
@@ -23,7 +53,7 @@ export const fetchProjects = () => {
     return(dispatch) => {
         axiosWithAuth().get(`/api/projects`)
             .then(res => {
-                dispatch({type: FETCH_PROJECTS, payload: res.data})
+                dispatch({type: FETCH_PROJECTS, payload: res.data});
             })
             .catch(err => {
                 console.log(err);

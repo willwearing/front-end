@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ProjectForm from "./components/CreateNewProject/ProjectForm";
 import PrivateRoute from './utils/PrivateRoute'
+import EditProjectForm from './components/EditProject/EditProjectForm';
 
 export default function App() {
 
@@ -51,6 +52,7 @@ export default function App() {
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/edit/:id" component={EditProjectForm} />
         <PrivateRoute path="/newproject" component={ProjectForm} />
         <PrivateRoute path="/dashboard" component={Dashboard}/>
       </Switch>
