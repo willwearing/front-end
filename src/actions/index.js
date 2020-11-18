@@ -4,6 +4,8 @@ import { axiosWithAuth } from './../utils/axiosWithAuth';
 
 export const ADD_PROJECT = 'ADD_PROJECT';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
+export const DELETE_PROJECT = 'DELETE_PROJECT';
+export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 export const SET_USERDETAILS = 'SET_USERDETAILS';
 
 
@@ -14,19 +16,37 @@ export const addProject = project => {
         axiosWithAuth()
             .post(`/api/projects`, project) 
             .then( res => {
-                debugger;
                 dispatch({type: ADD_PROJECT, payload: res.data});
 
             })
             .catch( err => {              
                 console.log(err);
-                debugger;
             })
     }
 }
 
 export const deleteProject = id => {
+    return (dispatch) => {
+        axiosWithAuth().delete(`/api/projects/${id}`)
+            .then(res => {
+                dispatch({type: DELETE_PROJECT, payload: res.data})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
 
+export const updateProject = id => {
+    return (dispatch) => {
+        axiosWithAuth().put(`/api/projects/${id}`)
+            .then(res => {
+                //dispatch({type: UPDATE_PROJECT, payload: res.data})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 }
 
 export const fetchProjects = () => {

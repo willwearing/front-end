@@ -1,6 +1,18 @@
 import React from "react";
+import { connect } from 'react-redux';
+import { deleteProject, updateProject } from './../../actions';
+import { useHistory } from 'react-router-dom';
 
-export default function ProjectPanel(props) {
+function ProjectPanel(props) {
+
+  const history = useHistory();
+
+  const handleDelete = e => {
+    e.preventDefault();
+    props.deleteProject(props.project.id);
+    history.push('/dashboard');
+  }
+
   return (
     <section id="one" className="wrapper style2 spotlights">
       <section>
@@ -10,10 +22,12 @@ export default function ProjectPanel(props) {
               <p>Project Description: {props.project.project_description}</p>
               <div>Project Funding: {props.project.project_funding}</div>
               <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={handleDelete}>Delete</button>
           </div>
         </div>
       </section>
     </section>
   );
 }
+
+export default connect(null, { deleteProject, updateProject })(ProjectPanel);
