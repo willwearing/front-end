@@ -7,8 +7,8 @@ const initialState = {
         password: '',
         email: '',
         role: ''
-    }
-    
+    },
+    isLoading: true
 }
 
 export const reducer = (state=initialState, action) => {
@@ -19,10 +19,13 @@ export const reducer = (state=initialState, action) => {
             }
         case FETCH_PROJECTS:
             return {...state,
-                projects: action.payload
+                projects: action.payload,
+                isLoading: false
             }
         case DELETE_PROJECT: 
-            return state;
+            return {...state,
+                projects: action.payload
+            }
         case UPDATE_PROJECT:
             return {...state,
                 projects: state.projects.map(proj => {

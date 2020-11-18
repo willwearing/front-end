@@ -25,9 +25,9 @@ const Dashboard = props => {
                 
             </section>
             <YourProjects>Your Projects</YourProjects>
-            {props.projects.map(proj => {
+            {props.isLoading ? ('Loading Projects...') : (props.projects.map(proj => {
                 return <ProjectPanel project={proj}/>
-            })}
+            }))}
             
         </div>
     )
@@ -36,7 +36,8 @@ const Dashboard = props => {
 const mapStateToProps = state => {
     return {
         projects: state.projects,
-        user: state.user
+        user: state.user,
+        isLoading: state.isLoading
     }
 }
 
