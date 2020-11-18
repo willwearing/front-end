@@ -37,9 +37,9 @@ export const deleteProject = id => {
     }
 }
 
-export const updateProject = id => {
+export const updateProject = (id, project) => {
     return (dispatch) => {
-        axiosWithAuth().put(`/api/projects/${id}`)
+        axiosWithAuth().put(`/api/projects/${id}`, project)
             .then(res => {
                 //dispatch({type: UPDATE_PROJECT, payload: res.data})
             })

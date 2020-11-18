@@ -13,6 +13,11 @@ function ProjectPanel(props) {
     history.push('/dashboard');
   }
 
+  const handleEdit = e => {
+    e.preventDefault();
+    history.push(`/edit/${props.project.id}`)
+  }
+
   return (
     <section id="one" className="wrapper style2 spotlights">
       <section>
@@ -21,7 +26,7 @@ function ProjectPanel(props) {
               <div>Project Name: {props.project.project_name}</div>
               <p>Project Description: {props.project.project_description}</p>
               <div>Project Funding: {props.project.project_funding}</div>
-              <button>Edit</button>
+              <button onClick={handleEdit}>Edit</button>
               <button onClick={handleDelete}>Delete</button>
           </div>
         </div>
