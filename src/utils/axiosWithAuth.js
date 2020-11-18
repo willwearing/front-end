@@ -6,7 +6,7 @@ export const axiosWithAuth = () => {
   return axios.create({
     baseURL: "https://vr-backend-lambda.herokuapp.com",
     headers: {
-      Authorization: `${token}`
+      Authorization: token
     }
   });
 };

@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import ProjectPanel from "./ProjectPanel";
+import styled from 'styled-components';
 
 import { connect } from 'react-redux'
 //import { axiosWithAuth } from './../../utils/axiosWithAuth';
 
 import { fetchProjects } from './../../actions';
+
 
 const Dashboard = props => {
 
@@ -22,7 +24,7 @@ const Dashboard = props => {
                 </div>
                 
             </section>
-            <div>Your Projects</div>
+            <YourProjects>Your Projects</YourProjects>
             {props.projects.map(proj => {
                 return <ProjectPanel project={proj}/>
             })}
@@ -33,8 +35,15 @@ const Dashboard = props => {
 
 const mapStateToProps = state => {
     return {
-        projects: state.projects
+        projects: state.projects,
+        user: state.user
     }
 }
 
 export default connect(mapStateToProps, {fetchProjects})(Dashboard)
+
+
+const YourProjects = styled.div`
+    font-size: 3rem;
+
+`

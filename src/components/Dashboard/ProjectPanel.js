@@ -9,6 +9,8 @@ export default function ProjectPanel(props) {
               <div>Project Name: {props.project.project_name}</div>
               <p>Project Description: {props.project.project_description}</p>
               <div>Project Funding: {props.project.project_funding}</div>
+              <button>Edit</button>
+              <button>Delete</button>
           </div>
         </div>
       </section>

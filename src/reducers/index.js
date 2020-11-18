@@ -8,6 +8,7 @@ const initialState = {
         email: '',
         role: ''
     }
+    
 }
 
 export const reducer = (state=initialState, action) => {

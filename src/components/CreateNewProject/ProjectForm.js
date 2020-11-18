@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { axiosWithAuth } from './../../utils/axiosWithAuth';
+import { addProject } from './../../actions';
+import { connect } from 'react-redux';
 
 const initialFormValues = {
   project_name: "",
@@ -21,7 +23,7 @@ const initialFormErrors = {
 };
 const initialDisabled = true;
 
-export default function ProjectForm() {
+function ProjectForm(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -56,16 +58,8 @@ export default function ProjectForm() {
   };
 
   const newProject = (projectInfo) => {
-    axiosWithAuth()
-      .post("/api/projects", projectInfo)
-      .then((response) => {
-        // debugger;
-        console.log("project response", response);
-        history.push("/dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    props.addProject(projectInfo);
+    history.push('/dashboard');
   };
 
   const formSubmit = () => {
@@ -73,9 +67,8 @@ export default function ProjectForm() {
       project_name: formValues.project_name.trim(),
       project_description: formValues.project_description.trim(),
       project_funding: formValues.project_funding,
-      funded: formValues.funded === "0" ? true : false,
+      funded: formValues.funded === 0 ? true : false,
     };
-    console.log(projectInfo);
     newProject(projectInfo);
   };
 
@@ -110,7 +103,7 @@ export default function ProjectForm() {
           </div>
 
           <div className="inputWrapper">
-            <div className="fields">Project Decsription</div>
+            <div className="fields">Project Description</div>
             <textarea
               type="text"
               name="project_description"
@@ -163,6 +156,10 @@ export default function ProjectForm() {
     </ProjectFormContainer>
   );
 }
+
+
+
+export default connect(null, { addProject })(ProjectForm)
 
 const ProjectFormContainer = styled.div`
   /* border: 1px solid black; */
