@@ -5,9 +5,9 @@ import schema from "./ProjectFormSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { axiosWithAuth } from './../../utils/axiosWithAuth';
-import { addProject } from './../../actions';
-import { connect } from 'react-redux';
+import { axiosWithAuth } from "./../../utils/axiosWithAuth";
+import { addProject } from "./../../actions";
+import { connect } from "react-redux";
 
 const initialFormValues = {
   project_name: "",
@@ -59,7 +59,7 @@ function ProjectForm(props) {
 
   const newProject = (projectInfo) => {
     props.addProject(projectInfo);
-    history.push('/dashboard');
+    history.push("/dashboard");
   };
 
   const formSubmit = () => {
@@ -157,81 +157,120 @@ function ProjectForm(props) {
   );
 }
 
-
-
-export default connect(null, { addProject })(ProjectForm)
+export default connect(null, { addProject })(ProjectForm);
 
 const ProjectFormContainer = styled.div`
   /* border: 1px solid black; */
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-top: 10rem;
   .formWrapper {
     display: flex;
     justify-content: center;
     padding-left: 40rem;
-    padding-top: 17.5rem;
+    align-items: center;
+    height: 100vh;
+    /* padding-top: 37rem; */
+    @media (max-width: 1280px) {
+      padding-left: 35rem;
+      padding-top: 15rem;
+      align-items: flex-start;
+      margin-top: 10rem;
+    }
+    @media (max-width: 900px) {
+      padding-left: 0rem;
+      padding-top: 0rem;
+      margin-top: 5rem;
+      padding-top: 0rem;
+    }
+    @media (max-width: 900px) {
+      margin-top: 10rem;
+    }
+    @media (max-width: 600px) {
+      margin-top: 5rem;
+    }
     form {
       display: flex;
       flex-direction: column;
       width: 75rem;
+      @media (max-width: 900px) {
+        width: 25rem;
+      }
     }
     .inputWrapper {
       display: flex;
       margin: 1rem 0 1rem 0;
+      @media (max-width: 900px) {
+        flex-direction: column;
+      }
       .fields {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        width: 10rem;
+        width: 15rem;
         height: 3.7rem;
-        font-size: 1rem;
+        font-size: 1.5rem;
       }
       input {
-        height: 3.1rem;
-        width: 17.7rem;
+        height: 3.7rem;
+        width: 25rem;
+        font-size: 1.4rem;
       }
       textarea {
-        width: 17.7rem;
-        height: 8rem;
+        width: 25rem;
+        height: 12rem;
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-start;
         align-items: flex-start;
-        font-size: 0.8rem;
+        font-size: 1.3rem;
         overflow-wrap: break-word;
       }
       .error {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         margin-top: 1rem;
         color: red;
         font-size: 1.1rem;
         padding-left: 1.5rem;
+        width: 25rem;
+        @media (max-width: 1000px) {
+          width: 20rem;
+          font-size: 0.9rem;
+        }
       }
       .emptyDiv {
         width: 17.7rem;
         height: 3.1rem;
+        @media (max-width: 900px) {
+          width: 0rem;
+          height: 0rem;
+        }
       }
       select {
-        width: 17.7rem;
-        height: 3rem;
+        width: 25rem;
+        height: 3.7rem;
+        font-size: 1.4rem;
       }
     }
   }
   .submitBtn {
     display: flex;
-    margin-left: 10rem;
+    margin-left: 15rem;
     height: 3.1rem;
+    @media (max-width: 900px) {
+      margin-left: 0rem;
+    }
     .filler {
-      width: 17.7rem;
+      width: 25rem;
       height: 3.7rem;
     }
     button {
-      /* width: 10rem; */
-      margin-top: 0.7rem;
-      font-size: 0.7rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      @media (max-width: 900px) {
+        margin-top: 2.5rem;
+      }
     }
   }
 `;

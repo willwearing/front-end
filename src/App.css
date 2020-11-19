@@ -3245,7 +3245,15 @@ input, select, textarea {
 
 		.wrapper.style1 {
 			background-color: #5e42a6;
+			height: 20vh;
+			
 		}
+			@media screen and (max-width: 400px){
+				.wrapper.style1 {
+					background-color: #5e42a6;
+					/* height: 10vh; */
+				}	
+			}
 
 		.wrapper.style1-alt {
 			background-color: #493382;
@@ -3814,7 +3822,7 @@ input, select, textarea {
 				padding: 0;
 				text-align: center;
 				top: 0;
-				width: 100%;
+				width: 100vw;
 			}
 
 				#sidebar > .inner {
@@ -3869,7 +3877,42 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			#sidebar {
-				display: none;
+				display: flex;
+				font-size: 1rem;;
+			}
+
+		}
+		@media screen and (max-width: 480px) {
+
+			#sidebar {
+				display: flex;
+				font-size: 1rem;;
+			}
+
+		}
+		@media screen and (max-width: 400px) {
+
+			#sidebar {
+				display: flex;
+				font-size: 0.9rem;
+			}
+
+		}
+		@media screen and (max-width: 374px) {
+
+			#sidebar {
+				display: flex;
+				font-size: 0.8rem;
+			}
+
+		}
+		@media screen and (max-width: 300px) {
+
+			#sidebar {
+				display: flex;
+				font-size: 0.7rem;
+				/* padding-left: 4.5rem; */
+				width: 100%;
 			}
 
 		}

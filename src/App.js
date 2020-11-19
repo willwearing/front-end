@@ -1,7 +1,6 @@
 import "./App.css";
 import { Route, Link, Switch, BrowserRouter as Router, useHistory } from "react-router-dom";
 import Login from "./components/login/Login";
-import Home from "./components/Home";
 import Register from "./components/register/Register";
 import styled from "styled-components";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -24,7 +23,7 @@ export default function App() {
           <nav>
             <ul>
               <li>
-                <a href="/" className="scrolly">
+                <a href="https://marketing-page-theta.vercel.app" target = "_self" className="scrolly">
                   Home
                 </a>
               </li>
@@ -50,7 +49,6 @@ export default function App() {
         </div>
       </section>
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/edit/:id" component={EditProjectForm} />
