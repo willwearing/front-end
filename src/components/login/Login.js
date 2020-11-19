@@ -59,7 +59,6 @@ function Login(props) {
       .then((res) => {
         //debugger;
         localStorage.setItem('token', res.data.token)
-        console.log(res.data);
         props.setUserDetails(res.data.user);
         setFormValues(initialFormValues);
         history.push("/dashboard");

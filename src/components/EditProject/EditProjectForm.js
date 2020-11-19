@@ -158,7 +158,7 @@ const EditProjectForm = (props) => {
 
                     <div className="submitBtn">
                         <div className="filler">
-                        <button disabled={disabled}>Create New Project</button>
+                        <button disabled={disabled}>Update Project</button>
                         </div>
                     </div>
                     </form>
