@@ -60,6 +60,7 @@ const Project = styled.section`
       margin-bottom: 0;
       @media (max-width: 600px) {
         font-size: 1.5rem;
+        /* padding: 0 10% 0 10%; */
       }
     }
     span {
@@ -75,6 +76,9 @@ const Project = styled.section`
       margin-top: 1rem;
       height: 5rem;
       font-size: 1rem;
+      &:nth-of-type(1) {
+        margin-right: 10px;
+      }
       @media (max-width: 600px) {
         font-size: 0.8rem;
       }
