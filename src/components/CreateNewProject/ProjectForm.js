@@ -180,6 +180,14 @@ const ProjectFormContainer = styled.div`
     @media (max-width: 900px) {
       padding-left: 0rem;
       padding-top: 0rem;
+      margin-top: 5rem;
+      padding-top: 0rem;
+    }
+    @media (max-width: 900px) {
+      margin-top: 10rem;
+    }
+    @media (max-width: 600px) {
+      margin-top: 5rem;
     }
     form {
       display: flex;

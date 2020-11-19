@@ -23,11 +23,10 @@ function ProjectPanel(props) {
       <div className="inner">
         <div className="title">{props.project.project_name}</div>
         <div className="fund">
-          <span>Funding Needed:</span> ${props.project.project_funding}
+          <span>Funding:</span> ${props.project.project_funding}
         </div>
         <div className="desc">
-          <span>Project Description:</span>{" "}
-          <p>{props.project.project_description}</p>
+          <span>Description:</span> <p>{props.project.project_description}</p>
         </div>
       </div>
       <div className="buttonDiv">
@@ -78,11 +77,14 @@ const Project = styled.section`
       @media (max-width: 1280px) {
         width: 100%;
       }
+      @media (max-width: 900px) {
+        width: 80vw;
+      }
       @media (max-width: 800px) {
         font-size: 2.5rem;
       }
       @media (max-width: 600px) {
-        width: 80vw;
+        /* width: 80vw; */
         font-size: 2rem;
       }
       @media (max-width: 400px) {
@@ -138,7 +140,19 @@ const Project = styled.section`
         font-size: 0.9rem;
       }
       span {
-        padding-right: 1rem;
+        padding-right: 3rem;
+        @media (max-width: 1280px) {
+          padding-right: 3rem;
+        }
+        @media (max-width: 800px) {
+          padding-right: 2.5rem;
+        }
+        @media (max-width: 600px) {
+          padding-right: 2.5rem;
+        }
+        @media (max-width: 400px) {
+          padding-right: 1.6rem;
+        }
       }
     }
   }
