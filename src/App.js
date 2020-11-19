@@ -4,6 +4,7 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import styled from "styled-components";
 import Dashboard from "./components/Dashboard/Dashboard";
+import AllProjects from "./components/Dashboard/AllProjects"
 import ProjectForm from "./components/CreateNewProject/ProjectForm";
 import PrivateRoute from './utils/PrivateRoute'
 import EditProjectForm from './components/EditProject/EditProjectForm';
@@ -42,6 +43,9 @@ export default function App() {
                 <StyledLink to="/dashboard">Dashboard</StyledLink>
               </li>
               <li>
+                <StyledLink to="/allprojects">See All Projects</StyledLink>
+              </li>
+              <li>
                 <StyledLink to="/newproject">Create New Project</StyledLink>
               </li>
             </ul>
@@ -54,6 +58,7 @@ export default function App() {
         <Route path="/edit/:id" component={EditProjectForm} />
         <PrivateRoute path="/newproject" component={ProjectForm} />
         <PrivateRoute path="/dashboard" component={Dashboard}/>
+        <PrivateRoute path="/allprojects" component={AllProjects}/>
       </Switch>
     </div>
     </Router>
