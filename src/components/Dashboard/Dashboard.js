@@ -16,13 +16,14 @@ const Dashboard = (props) => {
   return (
     <Header>
       <div className="greeting">
-        <p>Hello {props.user.name}, welcome to your dashboard!</p>
+        <p>Hello {props.user.name}, welcome to your dashboard!<br></br>
+        You are a{props.user.role == 0 ? ' Project Owner' : 'n Investor'}</p>
       </div>
       <div className="yourProjects">Your Projects</div>
       {props.userProjects.length === 0
         ? "You currently have 0 projects"
         : props.userProjects.map((proj) => {
-            return <ProjectPanel key={uuid()} project={proj} />;
+            return <ProjectPanel key={uuid()} project={proj} user={props.user}/>;
           })}
     </Header>
   );
