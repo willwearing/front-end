@@ -19,7 +19,7 @@ const Dashboard = props => {
             <section id="intro" className="wrapper style1 fullscreen fade-up">
                 <div className="inner">
                     {/*Here we will greet the user and display their details*/}
-                    Hello {/*props.user.name*/}!
+                    Hello {props.user.name}!
                     
                 </div>
                 
