@@ -15,9 +15,9 @@ const Dashboard = (props) => {
 
   return (
     <Header>
-        <div className="greeting">
-          <p>Hello, welcome to your dashboard!</p>
-        </div>
+      <div className="greeting">
+        <p>Hello, welcome to your dashboard!</p>
+      </div>
       <div className="yourProjects">Your Projects</div>
       {props.isLoading
         ? "Loading Projects..."
@@ -38,15 +38,13 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { fetchProjects })(Dashboard);
 
-
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 15rem;
+  margin-left: 30rem;
   justify-content: center;
   align-items: center;
   font-size: 4rem;
-  /* width: 100%; */
   @media (max-width: 1280px) {
     width: 100%;
     margin-left: 0;
@@ -77,7 +75,7 @@ const Header = styled.div`
     }
   }
   .yourProjects {
-      width: 100%;
+    width: 100%;
     font-size: 4rem;
     background-color: #b74e91;
     @media (max-width: 1280px) {
