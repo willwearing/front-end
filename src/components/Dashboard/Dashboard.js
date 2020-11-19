@@ -6,11 +6,11 @@ import { v4 as uuid } from "uuid";
 import { connect } from "react-redux";
 //import { axiosWithAuth } from './../../utils/axiosWithAuth';
 
-import { fetchProjects } from "./../../actions";
+import { fetchUserProjects } from "./../../actions";
 
 const Dashboard = (props) => {
   useEffect(() => {
-    props.fetchProjects();
+    props.fetchUserProjects(props.user.id);
   }, []);
 
   return (
@@ -19,9 +19,9 @@ const Dashboard = (props) => {
         <p>Hello {props.user.name}, welcome to your dashboard!</p>
       </div>
       <div className="yourProjects">Your Projects</div>
-      {props.isLoading
-        ? "Loading Projects..."
-        : props.projects.map((proj) => {
+      {props.userProjects.length === 0
+        ? "You currently have 0 projects"
+        : props.userProjects.map((proj) => {
             return <ProjectPanel key={uuid()} project={proj} />;
           })}
     </Header>
@@ -32,11 +32,12 @@ const mapStateToProps = (state) => {
   return {
     projects: state.projects,
     user: state.user,
+    userProjects: state.userProjects,
     isLoading: state.isLoading,
   };
 };
 
-export default connect(mapStateToProps, { fetchProjects })(Dashboard);
+export default connect(mapStateToProps, { fetchUserProjects })(Dashboard);
 
 const Header = styled.div`
   display: flex;
