@@ -15,20 +15,15 @@ const Dashboard = (props) => {
 
   return (
     <Header>
-      <div id="wrapper">
-        <section id="intro" className="wrapper style1 fade-up">
-          <div className="innerStuff">
-            {/*Here we will greet the user and display their details*/}
-            <p>Hello, welcome to your dashboard!</p>
-          </div>
-        </section>
-        <YourProjects>Your Projects</YourProjects>
-        {props.isLoading
-          ? "Loading Projects..."
-          : props.projects.map((proj) => {
-              return <ProjectPanel key={uuid()} project={proj} />;
-            })}
-      </div>
+        <div className="greeting">
+          <p>Hello, welcome to your dashboard!</p>
+        </div>
+      <div className="yourProjects">Your Projects</div>
+      {props.isLoading
+        ? "Loading Projects..."
+        : props.projects.map((proj) => {
+            return <ProjectPanel key={uuid()} project={proj} />;
+          })}
     </Header>
   );
 };
@@ -43,23 +38,15 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { fetchProjects })(Dashboard);
 
-const YourProjects = styled.div`
-  font-size: 4rem;
-  background-color: #b74e91;
-  @media (max-width: 1280px) {
-    padding-left: 0;
-    font-size: 3rem;
-  }
-`;
 
 const Header = styled.div`
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   margin-left: 15rem;
   justify-content: center;
   align-items: center;
   font-size: 4rem;
-  width: 100%;
+  /* width: 100%; */
   @media (max-width: 1280px) {
     width: 100%;
     margin-left: 0;
@@ -68,15 +55,37 @@ const Header = styled.div`
   @media (max-width: 850px) {
     font-size: 3rem;
   }
-  .innerStuff {
-    width: 100vw;
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
+  .greeting {
+    width: 100%;
     display: flex;
     justify-content: center;
     padding-top: 9.5rem;
+    background-color: #5e42a6;
+    @media (max-width: 480px) {
+      padding-top: 5rem;
+    }
     p {
       @media (max-width: 850px) {
         padding: 0 10% 0 10%;
       }
+      @media (max-width: 300px) {
+        padding: 0;
+      }
+    }
+  }
+  .yourProjects {
+      width: 100%;
+    font-size: 4rem;
+    background-color: #b74e91;
+    @media (max-width: 1280px) {
+      padding-left: 0;
+      font-size: 3rem;
+    }
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
     }
   }
 `;

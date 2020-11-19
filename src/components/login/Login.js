@@ -133,19 +133,21 @@ const LoginContainer = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-top: 10rem;
   .formWrapper {
     display: flex;
     justify-content: center;
-    margin-left: 40rem;
-    margin-top: 40rem;
+    padding-left: 40rem;
+    align-items: center;
+    height: 100vh;
     @media (max-width: 1280px) {
-      margin-left: 35rem;
-      margin-top: 20rem;
+      padding-left: 35rem;
+      padding-top: 15rem;
+      align-items: flex-start;
+      margin-top: 10rem;
     }
     @media (max-width: 900px) {
-      margin-left: 0rem;
-      margin-top: 0rem;
+      padding-left: 0rem;
+      padding-top: 0rem;
     }
     form {
       display: flex;

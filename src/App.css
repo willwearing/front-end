@@ -3246,7 +3246,14 @@ input, select, textarea {
 		.wrapper.style1 {
 			background-color: #5e42a6;
 			height: 20vh;
+			
 		}
+			@media screen and (max-width: 400px){
+				.wrapper.style1 {
+					background-color: #5e42a6;
+					/* height: 10vh; */
+				}	
+			}
 
 		.wrapper.style1-alt {
 			background-color: #493382;
