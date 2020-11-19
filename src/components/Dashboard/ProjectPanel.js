@@ -9,23 +9,13 @@ function ProjectPanel(props) {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    if(props.user.role == 0) {
-      props.deleteProject(props.project.id);
-      history.push("/dashboard");
-    }
-    else {
-      alert('You cannot delete projects as an investor');
-    }
+    props.deleteProject(props.project.id);
+    history.push("/dashboard");
   };
 
   const handleEdit = (e) => {
     e.preventDefault();
-    if(props.user.role == 0) {
-      history.push(`/edit/${props.project.id}`);
-    }
-    else {
-      alert('You cannot edit projects as an investor');
-    }
+    history.push(`/edit/${props.project.id}`);
   };
 
   return (
