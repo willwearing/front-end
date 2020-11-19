@@ -1,4 +1,4 @@
-import { ADD_PROJECT, FETCH_PROJECTS, DELETE_PROJECT, UPDATE_PROJECT, SET_USERDETAILS } from './../actions';
+import { ADD_PROJECT, FETCH_PROJECTS, DELETE_PROJECT, UPDATE_PROJECT, SET_USERDETAILS, FETCH_USERPROJECTS } from './../actions';
 
 const initialState = {
     projects: [],
@@ -9,6 +9,7 @@ const initialState = {
         role: '',
         id: ''
     },
+    userProjects: [],
     isLoading: true
 }
 
@@ -35,6 +36,10 @@ export const reducer = (state=initialState, action) => {
                     }
                     return proj
                 })
+            }
+        case FETCH_USERPROJECTS:
+            return {...state,
+                userProjects: action.payload,
             }
         case SET_USERDETAILS:
             return {...state,
