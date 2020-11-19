@@ -11,7 +11,6 @@ import styled from "styled-components";
 import { useParams, useHistory } from "react-router-dom";
 
 
-import { updateProject, fetchProjects } from "./../../actions";
 
 const EditProjectForm = (props) => {
   const initialFormValues = {
@@ -31,12 +30,6 @@ const EditProjectForm = (props) => {
   const [updatedProject, setUpdatedProject] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
-
-
-    const [updatedProject, setUpdatedProject] = useState(initialFormValues);
-    const [formErrors, setFormErrors] = useState(initialFormErrors);
-    const [disabled, setDisabled] = useState(initialDisabled);
-
     
     
     const { id } = useParams();
