@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import schema from "./EditProjectFormSchema";
+
+
+import { updateProject, fetchProjects } from './../../actions'
+import { axiosWithAuth } from './../../utils/axiosWithAuth';
+
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { useParams, useHistory } from "react-router-dom";
+
 
 import { updateProject, fetchProjects } from "./../../actions";
 
@@ -26,8 +32,27 @@ const EditProjectForm = (props) => {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
-  const { id } = useParams();
-  const history = useHistory();
+
+    const [updatedProject, setUpdatedProject] = useState(initialFormValues);
+    const [formErrors, setFormErrors] = useState(initialFormErrors);
+    const [disabled, setDisabled] = useState(initialDisabled);
+
+    
+    
+    const { id } = useParams();
+    const history = useHistory();
+    
+    
+    useEffect(() => {
+        axiosWithAuth().get(`/api/projects/${id}`)
+            .then( res => {
+                setUpdatedProject(res.data);
+            })
+            .catch( err => {
+                console.log(err);
+            })
+    }, [])
+
 
   const inputChange = (name, value) => {
     yup

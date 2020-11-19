@@ -6,7 +6,8 @@ const initialState = {
         name: '',
         password: '',
         email: '',
-        role: ''
+        role: '',
+        id: ''
     },
     isLoading: true
 }
@@ -41,7 +42,8 @@ export const reducer = (state=initialState, action) => {
                     name: action.payload.name,
                     password: action.payload.password,
                     email: action.payload.email,
-                    role: action.payload.role
+                    role: action.payload.role,
+                    id: action.payload.id
                 }    
             }
         default:

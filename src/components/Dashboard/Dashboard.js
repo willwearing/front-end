@@ -16,7 +16,7 @@ const Dashboard = (props) => {
   return (
     <Header>
       <div className="greeting">
-        <p>Hello, welcome to your dashboard!</p>
+        <p>Hello {props.user.name}, welcome to your dashboard!</p>
       </div>
       <div className="yourProjects">Your Projects</div>
       {props.isLoading

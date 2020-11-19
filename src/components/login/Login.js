@@ -5,6 +5,9 @@ import schema from "./loginSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+import { connect } from 'react-redux';
+import { setUserDetails } from './../../actions';
+
 const initialFormValues = {
   email: "",
   password: "",
@@ -15,7 +18,7 @@ const initialFormErrors = {
 };
 const initialDisabled = true;
 
-export default function Login() {
+function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -54,9 +57,8 @@ export default function Login() {
     axiosWithAuth()
       .post("/api/auth/login", loginInfo)
       .then((res) => {
-        //debugger;
-        localStorage.setItem("token", res.data.token);
-        console.log(res.data);
+        localStorage.setItem('token', res.data.token)
+        props.setUserDetails(res.data.user);
         setFormValues(initialFormValues);
         history.push("/dashboard");
       })
@@ -128,6 +130,8 @@ export default function Login() {
     </LoginContainer>
   );
 }
+
+export default connect(null, { setUserDetails })(Login);
 
 const LoginContainer = styled.div`
   display: flex;
