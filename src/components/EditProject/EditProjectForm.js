@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import schema from "./EditProjectFormSchema";
+
+
+import { updateProject, fetchProjects } from './../../actions'
+import { axiosWithAuth } from './../../utils/axiosWithAuth';
+
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { useParams, useHistory } from "react-router-dom";
 
-import { updateProject, fetchProjects } from "./../../actions";
+
 
 const EditProjectForm = (props) => {
   const initialFormValues = {
@@ -25,9 +30,22 @@ const EditProjectForm = (props) => {
   const [updatedProject, setUpdatedProject] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+    
+    
+    const { id } = useParams();
+    const history = useHistory();
+    
+    
+    useEffect(() => {
+        axiosWithAuth().get(`/api/projects/${id}`)
+            .then( res => {
+                setUpdatedProject(res.data);
+            })
+            .catch( err => {
+                console.log(err);
+            })
+    }, [])
 
-  const { id } = useParams();
-  const history = useHistory();
 
   const inputChange = (name, value) => {
     yup
@@ -160,19 +178,30 @@ const ProjectFormContainer = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-top: 10rem;
   .formWrapper {
     display: flex;
     justify-content: center;
     padding-left: 40rem;
-    padding-top: 37rem;
+    align-items: center;
+    height: 100vh;
+    /* padding-top: 37rem; */
     @media (max-width: 1280px) {
       padding-left: 35rem;
       padding-top: 15rem;
+      align-items: flex-start;
+      margin-top: 10rem;
     }
     @media (max-width: 900px) {
       padding-left: 0rem;
       padding-top: 0rem;
+      margin-top: 5rem;
+      padding-top: 0rem;
+    }
+    @media (max-width: 900px) {
+      margin-top: 10rem;
+    }
+    @media (max-width: 600px) {
+      margin-top: 5rem;
     }
     form {
       display: flex;

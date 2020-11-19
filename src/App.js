@@ -13,6 +13,7 @@ export default function App() {
 
   const submitLogout = () => {
     localStorage.removeItem('token');
+    alert('You were successfully logged out!')
   }
 
   return (

@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { axiosWithAuth } from './../utils/axiosWithAuth';
 
 
@@ -7,7 +7,7 @@ export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
 export const UPDATE_PROJECT = 'UPDATE_PROJECT';
 export const SET_USERDETAILS = 'SET_USERDETAILS';
-
+export const FETCH_USERPROJECTS = 'FETCH_USERPROJECTS';
 
 
 export const addProject = project => {
@@ -60,6 +60,19 @@ export const fetchProjects = () => {
             })
     }
 }
+
+export const fetchUserProjects = id => {
+    return(dispatch) => {
+        axiosWithAuth().get(`/api/users/${id}/projects`)
+            .then(res => {
+                dispatch({type: FETCH_USERPROJECTS, payload: res.data});
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
+
 
 export const setUserDetails = user => {
     return(dispatch) => {

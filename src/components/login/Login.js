@@ -5,6 +5,9 @@ import schema from "./loginSchema";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+import { connect } from 'react-redux';
+import { setUserDetails } from './../../actions';
+
 const initialFormValues = {
   email: "",
   password: "",
@@ -15,7 +18,7 @@ const initialFormErrors = {
 };
 const initialDisabled = true;
 
-export default function Login() {
+function Login(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
@@ -54,9 +57,8 @@ export default function Login() {
     axiosWithAuth()
       .post("/api/auth/login", loginInfo)
       .then((res) => {
-        //debugger;
-        localStorage.setItem("token", res.data.token);
-        console.log(res.data);
+        localStorage.setItem('token', res.data.token)
+        props.setUserDetails(res.data.user);
         setFormValues(initialFormValues);
         history.push("/dashboard");
       })
@@ -129,23 +131,27 @@ export default function Login() {
   );
 }
 
+export default connect(null, { setUserDetails })(Login);
+
 const LoginContainer = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-top: 10rem;
   .formWrapper {
     display: flex;
     justify-content: center;
-    margin-left: 40rem;
-    margin-top: 40rem;
+    padding-left: 40rem;
+    align-items: center;
+    height: 100vh;
     @media (max-width: 1280px) {
-      margin-left: 35rem;
-      margin-top: 20rem;
+      padding-left: 35rem;
+      padding-top: 15rem;
+      align-items: flex-start;
+      margin-top: 10rem;
     }
     @media (max-width: 900px) {
-      margin-left: 0rem;
-      margin-top: 0rem;
+      padding-left: 0rem;
+      padding-top: 0rem;
     }
     form {
       display: flex;
