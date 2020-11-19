@@ -160,13 +160,13 @@ const ProjectFormContainer = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: center;
-
   .formWrapper {
     display: flex;
     justify-content: center;
     padding-left: 40rem;
     align-items: center;
     height: 100vh;
+    /* padding-top: 37rem; */
     @media (max-width: 1280px) {
       padding-left: 35rem;
       padding-top: 15rem;
@@ -176,6 +176,14 @@ const ProjectFormContainer = styled.div`
     @media (max-width: 900px) {
       padding-left: 0rem;
       padding-top: 0rem;
+      margin-top: 5rem;
+      padding-top: 0rem;
+    }
+    @media (max-width: 900px) {
+      margin-top: 10rem;
+    }
+    @media (max-width: 600px) {
+      margin-top: 5rem;
     }
     form {
       display: flex;
