@@ -82,15 +82,10 @@ const EditProjectForm = (props) => {
 
   const updateButton = (e) => {
     e.preventDefault();
-    props.updateProject(id, updatedProject);
-    setUpdatedProject({
-      ...updatedProject,
-      project_name: "",
-      project_description: "",
-      project_funding: "",
-      funded: "",
-    });
-    history.push("/dashboard");
+    props.updateProject(id, updatedProject)
+      .then(res => {
+        history.push("/dashboard");
+      })
   };
 
   return (

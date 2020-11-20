@@ -4,19 +4,50 @@ import { deleteProject, updateProject } from "./../../actions";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+
 function ProjectPanel(props) {
   const history = useHistory();
 
   const handleDelete = (e) => {
     e.preventDefault();
-    props.deleteProject(props.project.id);
-    history.push("/dashboard");
+    if(props.user.role === 0) 
+    {
+      props.deleteProject(props.project.id);
+    }
+    else {
+      alert('You cannot delete projects as an investor');
+    }
   };
-
+  
+  
   const handleEdit = (e) => {
     e.preventDefault();
-    history.push(`/edit/${props.project.id}`);
+    if(props.user.role === 0) {
+      history.push(`/edit/${props.project.id}`);
+    }
+    else {
+      alert('You cannot edit projects as an investor');
+    }
+    
   };
+  
+
+  const handleInvest = e => {
+    e.preventDefault();
+    
+    if(props.project.funded === 0)
+    {
+      alert('This project is already funded');
+    }
+    else
+    {
+      const investedProject = {...props.project,
+        funded: 0
+      }
+      props.updateProject(props.project.id, investedProject)
+      alert(`Thanks for investing in ${props.project.project_name}`);
+    }
+  }
 
   return (
     <Project>
@@ -28,16 +59,29 @@ function ProjectPanel(props) {
         <div className="desc">
           <span>Description:</span> <p>{props.project.project_description}</p>
         </div>
+        <div className="desc">
+          <span>Funded:</span> <p>{props.project.funded === 1 ? 'No' : 'Yes'}</p>
+        </div>
       </div>
       <div className="buttonDiv">
         <button onClick={handleEdit}>Edit</button>
         <button onClick={handleDelete}>Delete</button>
+        <button onClick={handleInvest}>Invest</button>
       </div>
     </Project>
   );
 }
 
-export default connect(null, { deleteProject, updateProject })(ProjectPanel);
+const mapStateToProps = (state) => {
+  return {
+    projects: state.projects,
+    user: state.user,
+    userProjects: state.userProjects,
+    isLoading: state.isLoading,
+  };
+};
+
+export default connect(mapStateToProps, { deleteProject, updateProject })(ProjectPanel);
 
 const Project = styled.section`
   display: flex;

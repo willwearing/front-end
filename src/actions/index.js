@@ -17,7 +17,6 @@ export const addProject = project => {
             .post(`/api/projects`, project) 
             .then( res => {
                 dispatch({type: ADD_PROJECT, payload: res.data});
-
             })
             .catch( err => {              
                 console.log(err);
@@ -38,13 +37,14 @@ export const deleteProject = id => {
 }
 
 export const updateProject = (id, project) => {
+    console.log(project);
     return (dispatch) => {
-        axiosWithAuth().put(`/api/projects/${id}`, project)
+        return axiosWithAuth().put(`/api/projects/${id}`, project)
             .then(res => {
                 dispatch({type: UPDATE_PROJECT, payload: res.data})
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.error);
             })
     }
 }
@@ -79,3 +79,5 @@ export const setUserDetails = user => {
         dispatch({type: SET_USERDETAILS, payload: user});
     }
 }
+
+
