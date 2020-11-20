@@ -56,11 +56,11 @@ function ProjectPanel(props) {
         <div className="fund">
           <span>Funding:</span> ${props.project.project_funding}
         </div>
-        <div className="desc">
-          <span>Description:</span> <p>{props.project.project_description}</p>
+        <div className="funded">
+          <span>Funded:</span> {props.project.funded === 1 ? 'No' : 'Yes'}
         </div>
         <div className="desc">
-          <span>Funded:</span> <p>{props.project.funded === 1 ? 'No' : 'Yes'}</p>
+          <span>Description:</span> <p>{props.project.project_description}</p>
         </div>
       </div>
       <div className="buttonDiv">
@@ -140,10 +140,10 @@ const Project = styled.section`
       text-align: left;
       align-items: baseline;
       font-size: 2rem;
-      @media (max-width: 600px) {
+      @media (max-width: 800px) {
         font-size: 1.5rem;
       }
-      @media (max-width: 800px) {
+      @media (max-width: 600px) {
         font-size: 1.5rem;
       }
       @media (max-width: 400px) {
@@ -155,7 +155,7 @@ const Project = styled.section`
         margin-bottom: 0;
         @media (max-width: 800px) {
           width: 60vw;
-          font-size: 0.9rem;
+          font-size: 1.5rem;
         }
         @media (max-width: 600px) {
           width: 60vw;
@@ -199,6 +199,38 @@ const Project = styled.section`
         }
       }
     }
+    .funded {
+      width: 750px;
+      font-size: 2rem;
+      text-align: left;
+      @media (max-width: 1280px) {
+        width: 100%;
+      }
+      @media (max-width: 800px) {
+        font-size: 1.5rem;
+      }
+      @media (max-width: 600px) {
+        width: 60vw;
+      }
+      @media (max-width: 400px) {
+        font-size: 0.9rem;
+      }
+      span {
+        padding-right: 4.2rem;
+        @media (max-width: 1280px) {
+          padding-right: 4rem;
+        }
+        @media (max-width: 800px) {
+          padding-right: 3.5rem;
+        }
+        @media (max-width: 600px) {
+          padding-right: 3.5rem;
+        }
+        @media (max-width: 400px) {
+          padding-right: 2rem;
+        }
+      }
+    }
   }
   .buttonDiv {
     margin-bottom: 10px;
@@ -207,6 +239,9 @@ const Project = styled.section`
     width: 15rem;
     font-size: 1rem;
     &:nth-of-type(1) {
+      margin-right: 10px;
+    }
+    &:nth-of-type(2) {
       margin-right: 10px;
     }
     @media (max-width: 600px) {

@@ -43,10 +43,10 @@ export default function App() {
                 <StyledLink to="/dashboard">Dashboard</StyledLink>
               </li>
               <li>
-                <StyledLink to="/allprojects">See All Projects</StyledLink>
+                <StyledLink to="/allprojects">All Projects</StyledLink>
               </li>
               <li>
-                <StyledLink to="/newproject">Create New Project</StyledLink>
+                <StyledLink to="/newproject">Create Project</StyledLink>
               </li>
             </ul>
           </nav>

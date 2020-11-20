@@ -3886,7 +3886,7 @@ input, select, textarea {
 
 			#sidebar {
 				display: flex;
-				font-size: 1rem;;
+				font-size: 0.9rem;;
 			}
 
 		}
@@ -3894,7 +3894,7 @@ input, select, textarea {
 
 			#sidebar {
 				display: flex;
-				font-size: 0.9rem;
+				font-size: 0.8rem;
 			}
 
 		}
@@ -3902,7 +3902,7 @@ input, select, textarea {
 
 			#sidebar {
 				display: flex;
-				font-size: 0.8rem;
+				font-size: 0.7rem;
 			}
 
 		}
